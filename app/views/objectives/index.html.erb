@@ -1,0 +1,5 @@
+<% @objectives.each do |objective| %>
+	<%= link_to "#{objective.title}", objective_path(objective) %> <br>
+<% end %>
+
+<%= link_to "Create new objective", new_objective_path %>

@@ -1,0 +1,5 @@
+<%= form_for @objective, :url => objectives_path do |f| %>
+    <%= f.label :title %> :<br> <%= f.text_field :title, :size => "60px", :placeholder => "Title" %><br>
+	<%= f.label :description, "Objective description" %> :<br> <%= f.text_area :description, :placeholder => "Description" %><br>
+	<%= f.submit %>
+<% end %>
