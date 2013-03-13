@@ -5,8 +5,11 @@ class ObjectivesController < ApplicationController
 
 	def create
 		@objective = Objective.new(params[:objective])
+		user_id = params[:user_id]
+		@user = User.find(user_id)
+		@objective.user = @user
 		@objective.save
-
+		
 		redirect_to objectives_path
 	end
 
