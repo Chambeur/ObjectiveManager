@@ -3,9 +3,7 @@
 	<%= f.label :description, "Objective description" %> :<br> <%= f.text_area :description, :placeholder => "Description" %><br>
 	
     <% @users = User.all %>
-    <%= select_tag 'user_id', options_from_collection_for_select(@users, 'id', 'email', @users.first.id), :prompt => "Select an user" %><br>
+    <%= select_tag 'user_id', options_from_collection_for_select(@users, 'id', 'email'), :prompt => "Select an user" %><br>
 
-
-
-	<%= f.submit %> <!-- Utilise la methode create via l'url et donc la routes -->
+	<%= f.submit %>
 <% end %>

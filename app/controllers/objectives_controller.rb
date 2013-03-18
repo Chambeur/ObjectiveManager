@@ -8,9 +8,12 @@ class ObjectivesController < ApplicationController
 		user_id = params[:user_id]
 		@user = User.find(user_id)
 		@objective.user = @user
-		@objective.save
-		
-		redirect_to objectives_path
+		if @objective.save
+			redirect_to objectives_path
+		else
+			flash[:error] = "Error. Your objective has not been saved."
+       		render "new"
+		end
 	end
 
 	def index

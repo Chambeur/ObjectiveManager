@@ -1,23 +1,50 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>ObjManager</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-	<div id="user_nav">
-  		<% if user_signed_in? %>
-    		Signed in as <%= current_user.email %>. Not you?
-    		<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-  		<% else %>
-    		<%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
-    	<% end %>
-	</div>
+  <head>
+    <title>ObjManager</title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <header>
+      <div id="logo">
+        <%= link_to image_tag("/images/ObjManager_logo.png"), root_path %>
+      </div>
+      <h1>Objective Manager</h1>
+    </header>
+
+    <nav>
+      <ul>
+          <li> <%= link_to "Home", root_path %> 
+        <% if user_signed_in? %>
+          <li> Welcome Mister </li>
+          <li> <%= link_to "Sign out", destroy_user_session_path, :method => :delete %> </li>
+        <% else %>
+          <li> <%= link_to "Sign up", new_user_registration_path %> </li>
+          <li> <%= link_to "Sign in", new_user_session_path %> </li>
+        <% end %>
+      </ul>
+    </nav>
 
 
-<%= yield %>
+  <%= yield %>
 
-</body>
+    <section>
+      <aside>
+        <h1>À propos de l'auteur</h1>
+            <p>C'est moi, Zozor ! Je suis né un 23 novembre 2005.</p>
+      </aside>
+    </section>
+     
+    <footer>
+        <p>Copyright Zozor - Tous droits réservés<br />
+        <a href="#">Me contacter !</a></p>
+    </footer>
+
+  </body>
 </html>
