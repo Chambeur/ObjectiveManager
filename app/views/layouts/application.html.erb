@@ -11,35 +11,47 @@
   </head>
   <body>
 
-    <header>
-      <div id="logo">
-        <%= link_to image_tag("/images/ObjManager_logo.png"), root_path %>
+    <header class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">Objective Manager</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li> <%= link_to "Home", root_path %> </li>
+              <% if user_signed_in? %>
+              <li> <%= link_to "Sign out", destroy_user_session_path, :method => :delete %> </li>
+              <% else %>
+              <li> <%= link_to "Sign up", new_user_registration_path %> </li>
+              <li> <%= link_to "Sign in", new_user_session_path %> </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
       </div>
-      <h1>Objective Manager</h1>
     </header>
 
-    <nav>
-      <ul>
-          <li> <%= link_to "Home", root_path %> 
-        <% if user_signed_in? %>
-          <li> Welcome Mister </li>
-          <li> <%= link_to "Sign out", destroy_user_session_path, :method => :delete %> </li>
-        <% else %>
-          <li> <%= link_to "Sign up", new_user_registration_path %> </li>
-          <li> <%= link_to "Sign in", new_user_session_path %> </li>
-        <% end %>
-      </ul>
-    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="span9">
+          <%= yield %>
+        </div>
+        <div class="span3">
+          <section>
+            <aside>
+              <h1>À propos de l'auteur</h1>
+                  <p>C'est moi, Zozor ! Je suis né un 23 novembre 2005.</p>
+            </aside>
+          </section>
+        </div>
+      </div>
+    </div>
 
 
-  <%= yield %>
-
-    <section>
-      <aside>
-        <h1>À propos de l'auteur</h1>
-            <p>C'est moi, Zozor ! Je suis né un 23 novembre 2005.</p>
-      </aside>
-    </section>
      
     <footer>
         <p>Copyright Zozor - Tous droits réservés<br />
