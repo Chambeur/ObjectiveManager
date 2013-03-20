@@ -2,4 +2,4 @@
 	<%= link_to "#{objective.title}", objective_path(objective) %> : <%= link_to "Delete", objective_path(objective), :method => "delete", :confirm => "Are you sure?" %>  <br>
 <% end %>
 
-<%= link_to "Create new objective", new_objective_path %>
+<%= link_to "Create new objective", new_objective_path, :class => "btn", :type => "button" %>

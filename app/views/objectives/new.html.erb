@@ -1,9 +1,15 @@
 <%= form_for @objective, :url => objectives_path do |f| %>
-    <%= f.label :title %> :<br> <%= f.text_field :title, :size => "60px", :placeholder => "Title" %><br>
-	<%= f.label :description, "Objective description" %> :<br> <%= f.text_area :description, :placeholder => "Description" %><br>
-	
-    <% @users = User.all %>
-    <%= select_tag 'user_id', options_from_collection_for_select(@users, 'id', 'email'), :prompt => "Select an user" %><br>
 
-	<%= f.submit %>
+    <%= f.label :title %>
+    <%= f.text_field :title, :placeholder => "Title", :class => 'field span8' %>
+
+    <% @users = User.all %>
+    <%= f.label "Teammate selection" %> 
+    <%= select_tag 'user_id', options_from_collection_for_select(@users, 'id', 'email'), :prompt => "Select an user" %>
+
+	<%= f.label :description, "Objective description" %> 
+	<%= f.text_area :description, :placeholder => "Description", :class => 'field span8' %>
+
+	<%= f.submit :class => "btn btn-primary" %>
+
 <% end %>
