@@ -1,12 +1,3 @@
 @import "bootstrap";
 body { padding-top: 60px; }
 @import "bootstrap-responsive";
-
-
-  section.main {
-    .makeColumn(9);
-  }
-
-  aside {
-    .makeColumn(3);
-  }

@@ -1,5 +1,26 @@
-<% @objectives.each do |objective| %>
-	<%= link_to "#{objective.title}", objective_path(objective) %> : <%= link_to "Delete", objective_path(objective), :method => "delete", :confirm => "Are you sure?" %>  <br>
-<% end %>
+<table class="table table-striped table-bordered table-condensed">
+	<thead>
+		<tr>
+      		<th>Title</th>
+      		<th>Description</th>
+      		<th>Status</th>
+      		<th>Edit</th>
+      		<th>Delete</th>
+    	</tr>
+	</thead>
+		
+	<tbody>
+		<% @objectives.each do |objective| %>
+		<tr>
+			<td><%= link_to "#{objective.title}", objective_path(objective) %></td>
+			<td><%= link_to "#{objective.description}", objective_path(objective) %></td>
+			<td><span class="badge badge-success">OK</span></td>
+			<td>Edit</td>
+			<td><%= link_to "Delete", objective_path(objective), :method => "delete", :confirm => "Are you sure?" %></td>
+		</tr>	
+		<% end %>
+	</tbody>
+
+</table>
 
 <%= link_to "Create new objective", new_objective_path, :class => "btn", :type => "button" %>
