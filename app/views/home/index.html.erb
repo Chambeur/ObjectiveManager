@@ -1,7 +1,18 @@
-<div class="hero-unit" >
-	<h1>Welcome to my uber app</h1>
-
-	<%=link_to "Start Now", objectives_path, :class => "btn btn-primary btn-large" %>
-
+<div class="page-header">
+  <h1>Welcome to my uber app <small>Subtext for header</small></h1>
 </div>
 
+<div class="hero-unit" >
+	<h2>Create a new project</h2>
+	<%=link_to "Create Project", new_project_path, :class => "btn btn-primary btn-large" %>
+</div>
+
+<div class="hero-unit span3" >
+	<h2>View and manage all the objectives</h2>
+	<%=link_to "View Objectives", objectives_path, :class => "btn btn-primary btn-large" %>
+</div>
+
+<div class="hero-unit span3" >
+	<h2>View and manage all the projects</h2>
+	<%=link_to "View Projects", projects_path, :class => "btn btn-primary btn-large" %>
+</div>
