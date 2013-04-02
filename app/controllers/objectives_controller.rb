@@ -1,6 +1,7 @@
 class ObjectivesController < ApplicationController
 	def new 
 		@objective = Objective.new
+		@project = Project.find(params[:project_id])
 	end
 
 	def create
@@ -8,11 +9,13 @@ class ObjectivesController < ApplicationController
 		user_id = params[:user_id]
 		@user = User.find(user_id)
 		@objective.user = @user
+		@project = Project.find(params[:project_id])
+		@objective.project = @project
 		if @objective.save
-			redirect_to objectives_path
+			redirect_to project_path(@project)
 		else
 			flash[:error] = "Error. Your objective has not been saved."
-       		render "new"
+      render "new"
 		end
 	end
 

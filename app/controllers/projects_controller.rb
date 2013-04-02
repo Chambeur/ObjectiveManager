@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
 			redirect_to projects_path
 		else
 			flash[:error] = "Error. Your project has not been saved."
-       		render "index"
+      render "index"
 		end
 	end
 
@@ -19,6 +19,7 @@ class ProjectsController < ApplicationController
 
 	def show
 		@project = Project.find(params[:id])
+		@objectives = Objective.where(:project_id => params[:id])
 	end
 
 	def destroy

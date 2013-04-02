@@ -1,6 +1,10 @@
-<h1><%= @objective.title %> </h1>
+<div class="page-header">
+	<h1><%= @objective.title %> </h1>
+</div>
 
 <p class="lead"> <%= @objective.description %> </p>
+
+
 
 <%= link_to "Finish objective", root_path, :confirm => "Are you sure?", :class => "btn btn-success" %>
 

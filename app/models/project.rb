@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-	attr_accessible :name
+	attr_accessible :name, :description
 
-	has_many :objective	
+	has_many :objectives, :dependent => :destroy
 end

@@ -1,4 +1,8 @@
-<%= form_for @objective, :url => objectives_path do |f| %>
+<div class="page-header">
+  <h1>New objective for project : <%= @project.name %></h1>
+</div>
+
+<%= form_for @objective, :url => project_objectives_path(@project) do |f| %>
 
   <%= f.label :title %>
   <%= f.text_field :title, :placeholder => "Title", :class => 'span8' %>
@@ -9,7 +13,6 @@
 
 	<%= f.label "Week" %>
 	<input type="date" />
-
 
 	<%= f.label :description, "Objective description" %> 
 	<%= f.text_area :description, :placeholder => "Description", :class => 'span8' %>
