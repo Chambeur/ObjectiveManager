@@ -42,15 +42,15 @@
         </article>
         <aside class="span3">
           <h1>Quick views</h1>
-            All Weekobjectives
-            My Weekobjectives
+          <ul class="nav nav-pills nav-stacked">
+            <li> <%=link_to "All Objectives", objectives_path, :class => "btn-large" %> </li>
+            <li> <%=link_to "All Projects", projects_path, :class => "btn-large" %> </li>
+          </ul>
         </aside>
       </section>
 
 
       <footer class="row">
-          <p>Copyright Zozor - Tous droits réservés
-          <a href="#">Me contacter !</a></p>
       </footer>
 
     </div>

@@ -5,6 +5,7 @@ ObjManager::Application.routes.draw do
 
   resources :objectives
 
+  resources :labels
   resources :projects do
     resources :objectives
   end
