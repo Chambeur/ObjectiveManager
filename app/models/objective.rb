@@ -1,9 +1,12 @@
 class Objective < ActiveRecord::Base
-	attr_accessible :title, :description
+	# Attributes
+	attr_accessible :title, :description, :status
 
+	# Associations
 	belongs_to :user
 	belongs_to :project
 	has_and_belongs_to_many :labels
 
-	validates :user, :title, :description, :presence => {:message => "Field cannot be empty."}
+	# Validations
+	validates :user, :title, :description, presence: {message: "Field cannot be empty."}
 end

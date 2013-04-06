@@ -1,3 +1,32 @@
 @import "bootstrap";
 body { padding-top: 60px; }
 @import "bootstrap-responsive";
+
+
+.label-red {
+  background: red;
+}
+
+.label-blue {
+  background: blue;
+}
+
+.label-green {
+  background: green;
+}
+
+.label-yellow {
+  background: yellow;
+}
+
+.badge-finish {
+	background: green;
+}
+
+.badge-pending {
+	background: orange;
+}
+
+.badge-report {
+	background: red;
+}

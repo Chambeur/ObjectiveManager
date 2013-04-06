@@ -2,21 +2,56 @@
   <h1>New objective for project : <%= @project.name %></h1>
 </div>
 
-<%= form_for @objective, :url => project_objectives_path(@project) do |f| %>
+<%= form_for @objective, url: project_objectives_path(@project) do |f| %>
+  <p>
+    <%= f.label :title %>
+    <%= f.text_field :title,
+      placeholder: "Title",
+      class: 'span8'
+    %>
+  </p>
 
-  <%= f.label :title %>
-  <%= f.text_field :title, :placeholder => "Title", :class => 'span8' %>
+  <p>
+    <% @users = User.all %>
+    <%= f.label "Teammate selection" %>
+    <%= select_tag 'user_id', options_from_collection_for_select(@users, 'id', 'email'),
+      prompt: "Select an user"
+    %>
+  </p>
 
-  <% @users = User.all %>
-  <%= f.label "Teammate selection" %> 
-  <%= select_tag 'user_id', options_from_collection_for_select(@users, 'id', 'email'), :prompt => "Select an user" %>
+  <p>
+    <%= f.label "Label(s) selection" %>
+    <div class="btn-group">
+      <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+        Labels
+        <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <% labels = Label.all %>
+        <% labels.each do |label| %>
+          <li>
+            <%= check_box_tag :label, 'label_ids[]', label.id %>
+            <%= label_tag :label, label.name, class: label.colour %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <%=  %>
+  </p>
 
-	<%= f.label "Week" %>
-	<input type="date" />
+  <p>
+    <%= f.label "Week" %>
+	 <input type="date" />
+  </p>
 
-	<%= f.label :description, "Objective description" %> 
-	<%= f.text_area :description, :placeholder => "Description", :class => 'span8' %>
+  <p>
+    <%= f.label :description, "Objective description" %>
+  	<%= f.text_area :description,
+      placeholder: "Description",
+      class: 'span8'
+    %>
+  </p>
 
-	<%= f.submit :class => "btn btn-primary" %>
+	<%= f.submit class: "btn btn-primary" %>
 
 <% end %>

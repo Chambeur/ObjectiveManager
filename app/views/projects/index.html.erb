@@ -12,7 +12,7 @@
       <th>Delete</th>
     </tr>
 	</thead>
-		
+
 	<tbody>
 		<% @projects.each do |project| %>
 			<tr>
@@ -20,11 +20,19 @@
 				<td><%= link_to "#{project.description}", project_path(project) %></td>
 				<td> Foobar </td>
 				<td>Edit</td>
-				<td><%= link_to "Delete", project_path(project), :method => "delete", :confirm => "Are you sure?" %></td>
-			</tr>	
+				<td>
+          <%= link_to "Delete", project_path(project),
+            method: :delete,
+            confirm: "Are you sure?"
+          %>
+        </td>
+			</tr>
 		<% end %>
 	</tbody>
 
 </table>
 
-<%= link_to "Add objective to project", new_objective_path, :class => "btn", :type => "button" %>
+<%= link_to "Create project", new_project_path,
+  class: "btn",
+  type: "button"
+%>

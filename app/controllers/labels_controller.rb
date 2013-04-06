@@ -1,6 +1,6 @@
 class LabelsController < ApplicationController
 
-	def new 
+	def new
 		@label = Label.new
 	end
 
@@ -19,11 +19,11 @@ class LabelsController < ApplicationController
 	end
 
 	def show
-		@label = label.find(params[:id])
+		@label = Label.find(params[:id])
 	end
 
 	def destroy
-		@label = label.find(params[:id])
+		@label = Label.find(params[:id])
 		@label.destroy
 
 		redirect_to labels_path

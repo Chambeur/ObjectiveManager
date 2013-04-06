@@ -6,13 +6,18 @@
 	<tbody>
 		<% @labels.each do |label| %>
 			<tr>
-				<td><%= label.name, :class => "label" %> </td>
+				<td><%= label_tag :label, label.name, class: label.colour %></td>
 				<td><%= link_to "Edit label", label_path(label) %></td>
-				<td><%= link_to "Delete", label_path(label), :method => "delete", :confirm => "Are you sure?" %></td>
-			</tr>	
+				<td>
+					<%= link_to "Delete", label_path(label),
+						method: :delete,
+						confirm: "Are you sure?"
+					%>
+				</td>
+			</tr>
 		<% end %>
 	</tbody>
 
 </table>
 
-<%= link_to "Add objective to project", new_objective_path, :class => "btn", :type => "button" %>
+<%= link_to "Create Label", new_label_path, class: "btn", type: "button" %>

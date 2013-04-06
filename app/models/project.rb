@@ -1,7 +1,10 @@
 class Project < ActiveRecord::Base
+	# Attributes
 	attr_accessible :name, :description
 
-	has_many :objectives, :dependent => :destroy
+	# Associations
+	has_many :objectives, dependent: :destroy
 
-	validates :name, :description, :presence => {:message => "Field cannot be empty."}
+	# Validations
+	validates :name, :description, presence: {message: "Field cannot be empty."}
 end

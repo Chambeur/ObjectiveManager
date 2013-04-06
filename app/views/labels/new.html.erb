@@ -1,0 +1,33 @@
+<div class="page-header">
+  <h1>New label</h1>
+</div>
+
+<%= form_for @label, :url => labels_path do |f| %>
+
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name,
+      placeholder: "Label's name",
+      class: 'span8'
+    %>
+  </p>
+
+  <p>
+    <%= f.label :colour %>
+
+    <%= f.radio_button :colour, 'label label-red', checked: true %>
+    <%= f.label :red, class: 'label label-red' %>
+
+    <%= f.radio_button :colour, 'label label-blue' %>
+    <%= f.label :blue, class: 'label label-blue' %>
+
+    <%= f.radio_button :colour, 'label label-green' %>
+    <%= f.label :green, class: 'label label-green' %>
+
+    <%= f.radio_button :colour, 'label label-yellow' %>
+    <%= f.label :yellow, class: 'label label-yellow' %>
+  </p>
+
+  <p><%= f.submit :class => "btn btn-primary" %></p>
+
+<% end %>

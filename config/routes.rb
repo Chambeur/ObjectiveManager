@@ -3,8 +3,6 @@ ObjManager::Application.routes.draw do
 
   root :to => 'home#index'
 
-  resources :objectives
-
   resources :labels
   resources :projects do
     resources :objectives
