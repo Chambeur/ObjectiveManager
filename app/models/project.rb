@@ -4,6 +4,7 @@ class Project < ActiveRecord::Base
 
 	# Associations
 	has_many :objectives, dependent: :destroy
+	belongs_to :team
 
 	# Validations
 	validates :name, :description, presence: {message: "Field cannot be empty."}

@@ -7,6 +7,7 @@ ObjManager::Application.routes.draw do
   resources :projects do
     resources :objectives
   end
+  resources :teams
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

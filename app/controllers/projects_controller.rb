@@ -1,10 +1,19 @@
 class ProjectsController < ApplicationController
-	def new 
+
+	def new
 		@project = Project.new
 	end
 
 	def create
 		@project = Project.new(params[:project])
+		team = Team.autogenerate(@project.name)
+
+		if team.nil?
+			puts 'error in team'
+		end
+
+		@project.team = team
+
 		if @project.save
 			redirect_to projects_path
 		else
