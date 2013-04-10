@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1>Welcome to my uber app <small>Subtext for header</small></h1>
+  <h1>Welcome to my uber app <small><%= current_user.pseudonym unless current_user.nil? %></small></h1>
 </div>
 
 <section class="row">

@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
 
 	def create
 		@project = Project.new(params[:project])
-		team = Team.autogenerate(@project.name)
+		team = Team.autogenerate(@project.name, current_user.id)
 
 		if team.nil?
 			puts 'error in team'

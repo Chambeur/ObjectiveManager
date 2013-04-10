@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130408113632) do
+ActiveRecord::Schema.define(:version => 20130410085452) do
 
   create_table "labels", :force => true do |t|
     t.string   "name"
@@ -35,12 +35,30 @@ ActiveRecord::Schema.define(:version => 20130408113632) do
     t.string   "status"
   end
 
+  create_table "profiles", :force => true do |t|
+    t.string   "pseudo"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.date     "birthday"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "projects", :force => true do |t|
     t.string   "name"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.text     "description"
     t.integer  "team_id"
+  end
+
+  create_table "teammembers", :force => true do |t|
+    t.boolean  "manager"
+    t.integer  "user_id"
+    t.integer  "team_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "teams", :force => true do |t|

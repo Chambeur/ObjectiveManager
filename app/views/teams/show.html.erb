@@ -1,0 +1,12 @@
+<div class="page-header">
+  <h1><%= @team.name %></h1>
+  <small><%= link_to "show members", team_teammembers_path(@team) %> </small>
+</div>
+
+<p>
+  Manager :
+  <% @managers.each do |manager| %>
+    <%= manager.user.profile.pseudo  %>
+  <% end %>
+</p>
+

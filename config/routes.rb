@@ -3,11 +3,15 @@ ObjManager::Application.routes.draw do
 
   root :to => 'home#index'
 
+  resources :profiles
+
   resources :labels
   resources :projects do
     resources :objectives
   end
-  resources :teams
+  resources :teams do
+    resources :teammembers
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
