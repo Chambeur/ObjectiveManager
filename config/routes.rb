@@ -4,7 +4,7 @@ ObjManager::Application.routes.draw do
   root :to => 'home#index'
 
   resources :profiles
-
+  resources :objectives
   resources :labels
   resources :projects do
     resources :objectives

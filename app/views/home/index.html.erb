@@ -1,17 +1,50 @@
 <div class="page-header">
-  <h1>Welcome to my uber app <small><%= current_user.pseudonym unless current_user.nil? %></small></h1>
+  <h1>Welcome to my uber app <small><%= current_user.profile.pseudo unless current_user.nil? %></small></h1>
 </div>
 
 <section class="row">
   <% if user_signed_in? %>
 		<div class="span4" >
-			<h2>Create a new project</h2>
-			<%=link_to "Create Project", new_project_path, :class => "btn btn-primary btn-large" %>
+			<h3>My Objectives</h3>
+
+			<ul class="nav nav-tabs">
+				<li class="active">
+					<a href="#">Pending</a>
+				</li>
+				<li>
+					<a href="#">Finish</a>
+				</li>
+			</ul>
+
+			<ul>
+				<% current_user.objectives.each do |obj| %>
+					<li>
+						<%= link_to "#{obj.title}", objective_path(obj) %>
+						in project
+						<%= link_to "#{obj.project.name}", project_path(obj.project) %>
+					</li>
+				<% end %>
+			</ul>
 		</div>
 
 		<div class="span4" >
-			<h2>View and manage all the projects</h2>
-			<%=link_to "My Projects", projects_path, :class => "btn btn-primary btn-large" %>
+			<h3>My Projects</h3>
+
+			<table class="table table-condensed">
+				<tbody>
+					<% current_user.teams.each do |team| %>
+						<% team.projects.each do |project| %>
+							<tr>
+								<td><%= link_to "#{project.name}", project_path(project) %></td>
+								<td><strong>By</strong></td>
+								<td> <%= link_to "#{team.name}", team_path(team) %> </td>
+							</tr>
+						<% end %>
+					<% end %>
+				</tbody>
+			</table>
+
+			<%= link_to "Create new project...", new_project_path %>
 		</div>
 	<% else %>
 		<div class="hero-unit" >

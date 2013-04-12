@@ -1,6 +1,6 @@
 class Objective < ActiveRecord::Base
 	# Attributes
-	attr_accessible :title, :description, :status
+	attr_accessible :title, :description, :status, :week, :year
 
 	# Associations
 	belongs_to :user

@@ -1,0 +1,28 @@
+<div class="page-header">
+  <h1>Edit profile </h1>
+</div>
+
+<%= form_for @profile, url: profile_path(@profile) do |f| %>
+  <p>
+    <%= f.label :pseudo %>
+    <%= f.text_field :pseudo %>
+  </p>
+
+  <p>
+    <%= f.label :firstname %>
+    <%= f.text_field :firstname %>
+  </p>
+
+  <p>
+    <%= f.label :lastname %>
+    <%= f.text_field :lastname %>
+  </p>
+
+  <p>
+    <%= f.label :birthday %>
+    <%= f.text_field :birthday, type: 'date' %>
+  </p>
+
+	<%= f.submit class: "btn btn-primary" %>
+
+<% end %>

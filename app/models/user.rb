@@ -6,17 +6,14 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :profile_attributes
 
   # Associations
   has_one :profile
   accepts_nested_attributes_for :profile
-  before_create :build_profile
 
   has_many :objectives
   has_many :teammembers
   has_many :teams, through: :teammembers
-
-
 
 end
