@@ -4,11 +4,20 @@ ObjManager::Application.routes.draw do
   root :to => 'home#index'
 
   resources :profiles
-  resources :objectives
-  resources :labels
-  resources :projects do
-    resources :objectives
+
+  resources :objectives do
+    member do
+      put 'done'
+      put 'report'
+    end
   end
+
+  resources :labels
+
+  resources :projects do
+    resources :objectives, only: [:new, :create]
+  end
+
   resources :teams do
     resources :teammembers
   end

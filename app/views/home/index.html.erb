@@ -2,27 +2,37 @@
   <h1>Welcome to my uber app <small><%= current_user.profile.pseudo unless current_user.nil? %></small></h1>
 </div>
 
+<% status = params[:status] %>
+<% status ||= :pending %>
+
 <section class="row">
-  <% if user_signed_in? %>
+
+	<% if user_signed_in? %>
+
 		<div class="span4" >
-			<h3>My Objectives</h3>
+			<h3>My Objectives <%= status %></h3>
 
 			<ul class="nav nav-tabs">
-				<li class="active">
-					<a href="#">Pending</a>
+				<li <%= "class='active'" if status.to_s == :pending.to_s %>>
+					<%= link_to "Pending", root_path %>
 				</li>
-				<li>
-					<a href="#">Finish</a>
+				<li <%= "class='active'" if status.to_s == :done.to_s %>>
+					<%= link_to "Done", root_path(status: :done) %>
+				</li>
+				<li <%= "class='active'" if status.to_s == :missed.to_s %>>
+					<%= link_to "Missed", root_path(status: :missed) %>
 				</li>
 			</ul>
 
 			<ul>
 				<% current_user.objectives.each do |obj| %>
-					<li>
-						<%= link_to "#{obj.title}", objective_path(obj) %>
-						in project
-						<%= link_to "#{obj.project.name}", project_path(obj.project) %>
-					</li>
+					<% if obj.status.to_s == status.to_s %>
+						<li>
+							<%= link_to "#{obj.title}", objective_path(obj) %>
+							in project
+							<%= link_to "#{obj.project.name}", project_path(obj.project) %>
+						</li>
+					<% end %>
 				<% end %>
 			</ul>
 		</div>
@@ -46,14 +56,18 @@
 
 			<%= link_to "Create new project...", new_project_path %>
 		</div>
+
 	<% else %>
-		<div class="hero-unit" >
-			<h2>Starting using Weeko !</h2>
-			<p>
-				<%=link_to "Start Now", new_user_registration_path, :class => "btn btn-primary btn-large" %>
-				or
-				<%=link_to "Sign In", new_user_session_path, :class => "btn btn-primary btn-large" %>
-			</p>
-		</div>
+
+    <div class="hero-unit span11" >
+      <h2>Starting using Weeko !</h2>
+      <p>
+        <%=link_to "Start", new_user_registration_path, class: "btn btn-primary btn-large" %>
+        or
+        <%=link_to "Sign In", new_user_session_path, class: "btn btn-primary btn-large" %>
+      </p>
+    </div>
+
 	<% end %>
+
 </section>

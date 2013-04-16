@@ -38,18 +38,36 @@
 
     <div class="container">
       <section class="row">
-        <article class="span9">
+
+        <% if user_signed_in? %>
+
+          <aside class="span2">
+            <h2>Profil</h2>
+            <ul class="nav nav-pills nav-stacked">
+              <li> <%=link_to "All Projects", projects_path, :class => "btn-large" %> </li>
+              <li> <%=link_to "Manage Labels", labels_path, :class => "btn-large" %> </li>
+              <li> <%=link_to "Manage Teams", teams_path, :class => "btn-large" %> </li>
+            </ul>
+          </aside>
+
+          <article class="span8">
+            <%= yield %>
+          </article>
+
+          <aside class="span2">
+            <h3>Quick views</h3>
+            <% #TODO: Add all the pourcent by project %>
+            <ul class="nav nav-pills nav-stacked">
+              <li> Current Week : <%= Date.today.cweek %> </li>
+              <li> Current Year : <%= Date.today.cwyear %> </li>
+              <li> Avancement : <%= "#{current_user.profile.percent}" %> % </li>
+              <li> Test </li>
+            </ul>
+          </aside>
+
+        <% else %>
           <%= yield %>
-        </article>
-        <aside class="span3">
-          <h1>Quick views</h1>
-          <ul class="nav nav-pills nav-stacked">
-            <li> Current Week : <%= Date.today.cweek %> </li>
-            <li> <%=link_to "All Projects", projects_path, :class => "btn-large" %> </li>
-            <li> <%=link_to "Manage Labels", labels_path, :class => "btn-large" %> </li>
-            <li> <%=link_to "Manage Teams", teams_path, :class => "btn-large" %> </li>
-          </ul>
-        </aside>
+        <% end %>
       </section>
 
       <footer class="row">
