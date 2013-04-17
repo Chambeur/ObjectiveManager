@@ -9,24 +9,13 @@ class Profile < ActiveRecord::Base
 	validates :pseudo, presence: {message: "Field cannot be empty."}
 
   # Methods
-  def proj_percent(project_id)
+  def percent(opts = {})
+    period = opts[:period] || Date.today
+    opts[:user_id] = self.user_id
+    undone_nb = Objective.undone_nb(period, opts)
+    done_nb = Objective.done_nb(period, opts)
+    total_nb = undone_nb + done_nb
 
-  end
-
-  def percent
-    pending_nb = Objective.where(
-      done: true,
-      user_id: self.user.id,
-      week: Date.today.cweek,
-      year: Date.today.cwyear
-    ).count
-
-    total_nb = Objective.where(
-      user_id: self.user.id,
-      week: Date.today.cweek,
-      year: Date.today.cwyear
-    ).count
-
-    average = (pending_nb.to_f / total_nb.to_f) * 100
+    total_nb.eql?(0) ? total_nb : done_nb * 100 / total_nb
   end
 end

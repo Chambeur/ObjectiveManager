@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130416135142) do
+ActiveRecord::Schema.define(:version => 20130417093009) do
 
   create_table "labels", :force => true do |t|
     t.string   "name"
@@ -32,9 +32,8 @@ ActiveRecord::Schema.define(:version => 20130416135142) do
     t.datetime "updated_at",  :null => false
     t.integer  "user_id"
     t.integer  "project_id"
-    t.integer  "week"
-    t.integer  "year"
     t.boolean  "done"
+    t.date     "startdate"
   end
 
   create_table "profiles", :force => true do |t|

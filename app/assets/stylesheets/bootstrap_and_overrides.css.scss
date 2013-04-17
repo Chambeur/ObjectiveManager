@@ -2,6 +2,10 @@
 body { padding-top: 60px; }
 @import "bootstrap-responsive";
 
+$done-color: green;
+$pending-color: orange;
+$missed-color: red;
+
 
 .label-red {
   background: red;
@@ -20,13 +24,27 @@ body { padding-top: 60px; }
 }
 
 .badge-done {
-	background: green;
+	background: $done-color;
 }
 
 .badge-pending {
-	background: orange;
+	background: $pending-color;
 }
 
 .badge-missed {
-	background: red;
+	background: $missed-color;
+}
+
+.progress {
+  .bar-done {
+    background: $done-color;
+  }
+
+  .bar-pending {
+    background: $pending-color;
+  }
+
+  .bar-missed {
+    background: $missed-color;
+  }
 }

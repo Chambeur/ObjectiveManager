@@ -5,22 +5,28 @@
 <p class="lead"> <%= @objective.description %> </p>
 
 <p>
-  <%= link_to "Finish objective", done_objective_path(@objective),
-    method: 'put',
-    confirm: "Are you sure?",
-    class: "btn btn-success"
-  %>
+  <% if @objective.status.eql?(Status::PENDING) %>
+    <%= link_to "Finish objective", done_objective_path(@objective),
+      method: 'put',
+      confirm: "Are you sure?",
+      class: "btn btn-success"
+    %>
+  <% end %>
 
-  <%= link_to "Report objective", report_objective_path(@objective),
-    method: "put",
-    confirm: "Are you sure?",
-    class: "btn btn-warning"
-  %>
+  <% if @objective.status.eql?(Status::PENDING||Status::MISSED) %>
+    <%= link_to "Report objective", report_objective_path(@objective),
+      method: "put",
+      confirm: "Are you sure?",
+      class: "btn btn-warning"
+    %>
+  <% end %>
 
-  <%= link_to "Delete objective",
-    objective_path(@objective),
-    method: "delete",
-    confirm: "Are you sure?",
-    class: "btn btn-danger"
-  %>
+  <% if @objective.status.eql?(Status::PENDING) %>
+    <%= link_to "Delete objective",
+      objective_path(@objective),
+      method: "delete",
+      confirm: "Are you sure?",
+      class: "btn btn-danger"
+    %>
+  <% end %>
 </p>

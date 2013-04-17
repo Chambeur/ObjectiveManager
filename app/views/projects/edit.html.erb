@@ -1,0 +1,20 @@
+<div class="page-header">
+  <h1>Edit project </h1>
+</div>
+
+<%= form_for @project, url: project_path(@project) do |f| %>
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name, :placeholder => "Project's name", :class => 'span8' %>
+  </p>
+
+  <p>
+    <%= f.label :description %>
+    <%= f.text_field :description, :placeholder => "Project's description", :class => 'span8' %>
+  </p>
+
+  <p>
+    <%= f.submit :class => "btn btn-primary" %>
+    <%= link_to "Cancel", project_path(@project), class: "btn" %>
+  </p>
+<% end %>

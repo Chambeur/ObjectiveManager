@@ -56,12 +56,18 @@
 
           <aside class="span2">
             <h3>Quick views</h3>
-            <% #TODO: Add all the pourcent by project %>
-            <ul class="nav nav-pills nav-stacked">
+            <ul>
               <li> Current Week : <%= Date.today.cweek %> </li>
               <li> Current Year : <%= Date.today.cwyear %> </li>
-              <li> Avancement : <%= "#{current_user.profile.percent}" %> % </li>
-              <li> Test </li>
+              <li> Avancement : <%= "#{current_user.profile.percent}%" %> </li>
+              <li>------------------</li>
+              <% current_user.teams.each do |team| %>
+                <% team.projects.each do |project| %>
+                  <li><%= link_to "#{project.name}", project_path(project) %> :
+                    <%= "#{current_user.profile.percent(project_id: project.id)}%" %>
+                  </li>
+                <% end %>
+              <% end %>
             </ul>
           </aside>
 

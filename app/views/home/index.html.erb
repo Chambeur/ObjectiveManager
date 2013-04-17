@@ -2,8 +2,19 @@
   <h1>Welcome to my uber app <small><%= current_user.profile.pseudo unless current_user.nil? %></small></h1>
 </div>
 
-<% status = params[:status] %>
-<% status ||= :pending %>
+<% status = (params[:status] || Status::PENDING).to_sym %>
+<% percent =  current_user.profile.percent %>
+<section class="row">
+	<% if percent > 70  %>
+		<div class="progress progress-success">
+	<% elsif percent > 40 %>
+		<div class="progress progress-warning">
+	<% else  %>
+		<div class="progress progress-danger">
+	<% end %>
+  	<div class="bar" style="width: <%= percent %>%;"></div>
+	</div>
+</section>
 
 <section class="row">
 
@@ -13,20 +24,20 @@
 			<h3>My Objectives <%= status %></h3>
 
 			<ul class="nav nav-tabs">
-				<li <%= "class='active'" if status.to_s == :pending.to_s %>>
+				<li <%= "class='active'" if status.eql?(Status::PENDING) %>>
 					<%= link_to "Pending", root_path %>
 				</li>
-				<li <%= "class='active'" if status.to_s == :done.to_s %>>
-					<%= link_to "Done", root_path(status: :done) %>
+				<li <%= "class='active'" if status.eql?(Status::DONE) %>>
+					<%= link_to "Done", root_path(status: Status::DONE) %>
 				</li>
-				<li <%= "class='active'" if status.to_s == :missed.to_s %>>
-					<%= link_to "Missed", root_path(status: :missed) %>
+				<li <%= "class='active'" if status.eql?(Status::MISSED) %>>
+					<%= link_to "Missed", root_path(status: Status::MISSED) %>
 				</li>
 			</ul>
 
 			<ul>
 				<% current_user.objectives.each do |obj| %>
-					<% if obj.status.to_s == status.to_s %>
+					<% if obj.status.eql?(status) %>
 						<li>
 							<%= link_to "#{obj.title}", objective_path(obj) %>
 							in project
