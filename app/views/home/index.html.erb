@@ -2,24 +2,23 @@
   <h1>Welcome to my uber app <small><%= current_user.profile.pseudo unless current_user.nil? %></small></h1>
 </div>
 
-<% status = (params[:status] || Status::PENDING).to_sym %>
-<% percent =  current_user.profile.percent %>
-<section class="row">
-	<% if percent > 70  %>
-		<div class="progress progress-success">
-	<% elsif percent > 40 %>
-		<div class="progress progress-warning">
-	<% else  %>
-		<div class="progress progress-danger">
-	<% end %>
-  	<div class="bar" style="width: <%= percent %>%;"></div>
-	</div>
-</section>
+<% if user_signed_in? %>
 
-<section class="row">
+	<% status = (params[:status] || Status::PENDING).to_sym %>
+	<% percent =  current_user.profile.percent %>
+	<section class="row">
+		<% if percent > 70  %>
+			<div class="progress progress-success">
+		<% elsif percent > 40 %>
+			<div class="progress progress-warning">
+		<% else  %>
+			<div class="progress progress-danger">
+		<% end %>
+	  	<div class="bar" style="width: <%= percent %>%;"></div>
+		</div>
+	</section>
 
-	<% if user_signed_in? %>
-
+	<section class="row">
 		<div class="span4" >
 			<h3>My Objectives <%= status %></h3>
 
@@ -67,9 +66,11 @@
 
 			<%= link_to "Create new project...", new_project_path %>
 		</div>
+	</section>
 
-	<% else %>
+<% else %>
 
+	<section class="row">
     <div class="hero-unit span11" >
       <h2>Starting using Weeko !</h2>
       <p>
@@ -78,7 +79,6 @@
         <%=link_to "Sign In", new_user_session_path, class: "btn btn-primary btn-large" %>
       </p>
     </div>
+	</section>
 
-	<% end %>
-
-</section>
+<% end %>

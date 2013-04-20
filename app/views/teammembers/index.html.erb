@@ -18,8 +18,8 @@
 		<% @teammembers.each do |teammember| %>
   		<tr>
         <td><%= teammember.user.email %> </td>
-  			<td><%= teammember.user.pseudonym %></td>
-  			<td><%= teammember.user.firstname + teammember.user.lastname %></td>
+  			<td><%= teammember.user.profile.pseudo %></td>
+  			<td><%= teammember.user.profile.firstname + teammember.user.profile.lastname %></td>
   			<td><%= teammember.manager? %></td>
   			<td>Edit</td>
   			<td>

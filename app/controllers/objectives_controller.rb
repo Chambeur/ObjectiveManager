@@ -1,7 +1,9 @@
 class ObjectivesController < ApplicationController
 	def new
 		@objective = Objective.new
-		@objective.project = Project.find(params[:project_id])
+		@project = Project.find(params[:project_id])
+		@labels = Label.all
+		@users = User.find(@project.team.users)
 	end
 
 	def create
@@ -27,6 +29,25 @@ class ObjectivesController < ApplicationController
 	def show
 		@objective = Objective.find(params[:id])
 	end
+
+	def edit
+		@objective = Objective.find(params[:id])
+		@labels = Label.all
+		@users = User.find(@objective.project.team.users)
+	end
+
+  def update
+    @objective = Objective.find(params[:id])
+    user = User.find(params[:user_id])
+    labels = Label.find(params[:label_ids]) unless params[:label_ids] == nil
+    if @objective.update_attributes(params[:objective], user: user, labels: labels)
+      flash[:success] = "All the modifications have been saved."
+      redirect_to project_path(@objective.project)
+    else
+      flash[:error] = "Error while saving the modifications."
+      render 'edit'
+    end
+  end
 
 	def destroy
 		objective = Objective.find(params[:id])
@@ -58,6 +79,7 @@ class ObjectivesController < ApplicationController
 			if @objective.update_attributes(startdate: startdate)
 				flash[:info] = "Objective reported next week."
 				render "show"
+				return
 			end
 		elsif @objective.status.eql?(Status::MISSED)
 			old_objective = @objective
@@ -66,10 +88,12 @@ class ObjectivesController < ApplicationController
 			if @objective.save
 				flash[:info] = "Objective duplicated to this week."
 				redirect_to objective_path(@objective)
+				return
 			end
 		else
 			# TODO: Ajouter cas d'erreur
 			render "show"
+			return
 		end
 
 		flash[:error] = "Objective not updated."

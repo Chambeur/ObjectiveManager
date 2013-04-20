@@ -23,6 +23,8 @@
     <%= f.text_field :birthday, type: 'date' %>
   </p>
 
-	<%= f.submit class: "btn btn-primary" %>
-
+  <p>
+  	<%= f.submit class: "btn btn-primary" %>
+    <%= link_to "Cancel", profile_path(@profile), class: "btn" %>
+  </p>
 <% end %>

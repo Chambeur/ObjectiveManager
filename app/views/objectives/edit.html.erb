@@ -1,8 +1,8 @@
 <div class="page-header">
-  <h1>New objective for project : <%= @project.name %></h1>
+  <h1>Edit objective</h1>
 </div>
 
-<%= form_for @objective, url: project_objectives_path(@project) do |f| %>
+<%= form_for @objective, url: objective_path(@objective) do |f| %>
   <p>
     <%= f.label :title %>
     <%= f.text_field :title,
@@ -19,20 +19,26 @@
   </p>
 
   <p>
-    <%= label_tag "Label(s) selection" %>
+    <%= f.label "Label(s) selection" %>
     <ul class="inline">
       <% @labels.each do |label| %>
         <li>
-          <%= check_box_tag 'label_ids[]', label.id %>
+          <%= check_box_tag 'label_ids[#{label.id}]', label.id, @objective.labels.include?(label) %>
           <%= label_tag label.id, label.name, class: label.colour %>
         </li>
       <% end %>
     </ul>
   </p>
 
+<p>
+<% 10.times do |i| %>
+  <%= label_tag i %>: <%= check_box_tag "alternate_numbers[#{i}]" %>
+<% end %>
+</p>
+
   <p>
     <%= f.label :description, "Objective description" %>
-  	<%= f.text_area :description,
+    <%= f.text_area :description,
       placeholder: "Description",
       class: 'span8'
     %>
@@ -40,7 +46,7 @@
 
   <p>
     <%= f.submit class: "btn btn-primary" %>
-    <%= link_to "Cancel", project_path(@project), class: "btn" %>
+    <%= link_to "Cancel", project_path(@objective.project_id), class: "btn" %>
   </p>
 
 <% end %>
