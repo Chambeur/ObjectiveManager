@@ -6,7 +6,7 @@ gem 'rails', '3.2.1'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 # SGBD
-gem 'sqlite3'
+gem 'pg'
 
 # User configuration
 gem 'devise'

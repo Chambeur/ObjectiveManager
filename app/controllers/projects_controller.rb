@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
 		@project.team = team
 
 		if @project.save
-			redirect_to projects_path
+			redirect_to project_path(@project)
 		else
 			flash[:error] = "Error. Your project has not been saved."
       render "index"

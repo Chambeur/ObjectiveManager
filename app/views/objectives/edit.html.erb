@@ -30,12 +30,6 @@
     </ul>
   </p>
 
-<p>
-<% 10.times do |i| %>
-  <%= label_tag i %>: <%= check_box_tag "alternate_numbers[#{i}]" %>
-<% end %>
-</p>
-
   <p>
     <%= f.label :description, "Objective description" %>
     <%= f.text_area :description,
