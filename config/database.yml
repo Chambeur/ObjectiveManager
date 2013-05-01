@@ -16,7 +16,13 @@ test:
   username: Chamber
   password: chamber
 
-
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: test
+  pool: 5
+  username: Chamber
+  password: chamber
 
 # # SQLite version 3.x
 # #   gem install sqlite3
