@@ -1,76 +1,87 @@
-<div class="page-header">
-  <h1>Welcome to my uber app <small><%= current_user.profile.pseudo unless current_user.nil? %></small></h1>
-</div>
-
 <% if user_signed_in? %>
 
-	<% status = (params[:status] || Status::PENDING).to_sym %>
-	<% percent =  current_user.profile.percent %>
-	<section class="row">
-		<% if percent > 70  %>
-			<div class="progress progress-success">
-		<% elsif percent > 40 %>
-			<div class="progress progress-warning">
-		<% else  %>
-			<div class="progress progress-danger">
-		<% end %>
-	  	<div class="bar" style="width: <%= percent %>%;"></div>
-		</div>
-	</section>
+  <ul class="nav nav-tabs" id="data-tab">
+    <li class='active'><a href="#obj">My Objectives</a></li>
+    <li><a href="#prj">My Projects</a></li>
+    <li><a href="#team">My Teams</a></li>
+    <li><a href="#act">My Activity</a></li>
+  </ul>
 
-	<section class="row">
-		<div class="span4" >
-			<h3>My Objectives</h3>
+  <div class="tab-content">
 
-			<ul class="nav nav-tabs">
-				<li <%= "class='active'" if status.eql?(Status::PENDING) %>>
-					<%= link_to "Pending", root_path %>
-				</li>
-				<li <%= "class='active'" if status.eql?(Status::DONE) %>>
-					<%= link_to "Done", root_path(status: Status::DONE) %>
-				</li>
-				<li <%= "class='active'" if status.eql?(Status::MISSED) %>>
-					<%= link_to "Missed", root_path(status: Status::MISSED) %>
-				</li>
-			</ul>
+    <!-- Beginning Tab Objectives -->
+    <div class="tab-pane active" id="obj">
+      <% status = (params[:status] || Status::PENDING).to_sym %>
+      <% percent =  current_user.profile.percent %>
 
-			<ul>
-				<% current_user.objectives.each do |obj| %>
-					<% if obj.status.eql?(status) %>
-						<li>
-							<%= link_to "#{obj.title}", objective_path(obj) %>
-							in project
-							<%= link_to "#{obj.project.name}", project_path(obj.project) %>
-						</li>
-					<% end %>
-				<% end %>
-			</ul>
-		</div>
+      <% if percent > 70  %>
+      <div class="progress progress-success">
+      <% elsif percent > 40 %>
+      <div class="progress progress-warning">
+      <% else  %>
+      <div class="progress progress-danger">
+      <% end %>
+        <div class="bar" style="width: <%= percent %>%;"></div>
+      </div>
 
-		<div class="span4" >
-			<h3>My Projects</h3>
+      <ul class="nav nav-tabs">
+        <li <%= "class='active'" if status.eql?(Status::PENDING) %>>
+          <%= link_to "Pending", root_path %>
+        </li>
+        <li <%= "class='active'" if status.eql?(Status::DONE) %>>
+          <%= link_to "Done", root_path(status: Status::DONE) %>
+        </li>
+        <li <%= "class='active'" if status.eql?(Status::MISSED) %>>
+          <%= link_to "Missed", root_path(status: Status::MISSED) %>
+        </li>
+      </ul>
 
-			<table class="table table-condensed">
-				<tbody>
-					<% current_user.teams.each do |team| %>
-						<% team.projects.each do |project| %>
-							<tr>
-								<td><%= link_to "#{project.name}", project_path(project) %></td>
-								<td><strong>By</strong></td>
-								<td> <%= link_to "#{team.name}", team_path(team) %> </td>
-							</tr>
-						<% end %>
-					<% end %>
-				</tbody>
-			</table>
+      <ul>
+        <% current_user.objectives.each do |obj| %>
+          <% if obj.status.eql?(status) %>
+            <li>
+              <%= link_to "#{obj.title}", objective_path(obj) %>
+              in project
+              <%= link_to "#{obj.project.name}", project_path(obj.project) %>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
 
-			<%= link_to "Create new project...", new_project_path %>
-		</div>
-	</section>
+    <!-- Beginning Tab Projects -->
+    <div class="tab-pane" id="prj">
+      <table class="table table-condensed">
+        <tbody>
+          <% current_user.teams.each do |team| %>
+            <% team.projects.each do |project| %>
+              <tr>
+                <td><%= link_to "#{project.name}", project_path(project) %></td>
+                <td><strong>By</strong></td>
+                <td> <%= link_to "#{team.name}", team_path(team) %> </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+
+      <%= link_to "Create new project...", new_project_path %>
+    </div>
+
+    <!-- Beginning Tab Teams -->
+    <div class="tab-pane" id="team">
+
+    </div>
+
+    <!-- Beginning Tab Avtivity -->
+    <div class="tab-pane" id="act">
+
+    </div>
+  </div>
 
 <% else %>
 
-	<section class="row">
+  <section class="row">
     <div class="hero-unit span11" >
       <h2>Starting using Weeko !</h2>
       <p>
@@ -79,6 +90,15 @@
         <%=link_to "Sign In", new_user_session_path, class: "btn btn-primary btn-large" %>
       </p>
     </div>
-	</section>
+  </section>
 
 <% end %>
+
+<script>
+  $('#data-tab a').click(
+    function (e) {
+      e.preventDefault();
+      $(this).tab('show');
+    }
+  )
+</script>

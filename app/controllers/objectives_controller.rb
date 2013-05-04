@@ -3,7 +3,7 @@ class ObjectivesController < ApplicationController
 		@objective = Objective.new
 		@project = Project.find(params[:project_id])
 		@labels = Label.all
-		@users = User.find(@project.team.users)
+		@profiles = Profile.where(user_id: @project.team.users)
 	end
 
 	def create
@@ -15,6 +15,7 @@ class ObjectivesController < ApplicationController
 		@objective.startdate = Date.today
 
 		if @objective.save
+			flash[:success] = "Objective created."
 			redirect_to project_path(@objective.project)
 		else
 			flash[:error] = "Error. Your objective has not been saved."
@@ -54,6 +55,7 @@ class ObjectivesController < ApplicationController
 		project = objective.project
 		objective.destroy
 
+		flash[:info] = "Objective deleted"
 		redirect_to project_path(project)
 	end
 
@@ -61,14 +63,13 @@ class ObjectivesController < ApplicationController
 		@objective = Objective.find(params[:id])
 
 		if @objective.update_attributes(done: true)
-			flash[:succes] = "Congrats ! You finish your objective."
+			flash[:success] = "Congrats ! Objective done."
 			render "show"
 		else
 			flash[:error] = "Objective not updated."
 			render "show"
 		end
 	end
-
 
 	def report
 		@objective = Objective.find(params[:id])

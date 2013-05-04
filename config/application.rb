@@ -57,6 +57,8 @@ module ObjManager
     config.assets.version = '1.0'
 
     # Config for heroku
+    # Troubleshooting when not set to false.
+    # See https://devcenter.heroku.com/articles/rails-asset-pipeline#troubleshooting
     config.assets.initialize_on_precompile = false
   end
 end

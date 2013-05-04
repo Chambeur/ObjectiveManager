@@ -7,7 +7,6 @@ class ProjectsController < ApplicationController
 	def create
 		@project = Project.new(params[:project])
 		team = Team.autogenerate(@project.name, current_user.id)
-
 		if team.nil?
 			puts 'error in team'
 		end
@@ -15,6 +14,7 @@ class ProjectsController < ApplicationController
 		@project.team = team
 
 		if @project.save
+			flash[:success] = "Project created"
 			redirect_to project_path(@project)
 		else
 			flash[:error] = "Error. Your project has not been saved."
@@ -50,6 +50,7 @@ class ProjectsController < ApplicationController
 		@project = Project.find(params[:id])
 		@project.destroy
 
+		flash[:info] = "Project deleted"
 		redirect_to projects_path
 	end
 

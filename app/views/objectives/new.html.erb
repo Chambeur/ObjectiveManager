@@ -13,7 +13,7 @@
 
   <p>
     <%= label_tag :user_id, "Teammate selection" %>
-    <%= select_tag :user_id, options_from_collection_for_select(@users, 'id', 'email'),
+    <%= select_tag :user_id, options_from_collection_for_select(@profiles, 'user_id', 'pseudo'),
       prompt: "Select an user"
     %>
   </p>

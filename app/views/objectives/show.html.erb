@@ -7,31 +7,54 @@
   </h1>
 </div>
 
-<p class="lead"> <%= @objective.description %> </p>
+<section class="row">
+  <article class="span8">
+    <p>
+      <h3>Description</h3>
+      <%= content_tag :div, @objective.description, class: "well" %>
+    </p>
 
-<p>
-  <% if @objective.status.eql?(Status::PENDING) %>
-    <%= link_to "Finish objective", done_objective_path(@objective),
-      method: 'put',
-      confirm: "Are you sure?",
-      class: "btn btn-success"
-    %>
-  <% end %>
+    <p>
+      <% if @objective.status.eql?(Status::PENDING) %>
+        <%= link_to "Finish objective", done_objective_path(@objective),
+          method: 'put',
+          confirm: "Are you sure?",
+          class: "btn btn-success"
+        %>
+      <% end %>
 
-  <% if @objective.status.eql?(Status::PENDING||Status::MISSED) %>
-    <%= link_to "Report objective", report_objective_path(@objective),
-      method: "put",
-      confirm: "Are you sure?",
-      class: "btn btn-warning"
-    %>
-  <% end %>
+      <% if @objective.status.eql?(Status::PENDING||Status::MISSED) %>
+        <%= link_to "Report objective", report_objective_path(@objective),
+          method: "put",
+          confirm: "Are you sure?",
+          class: "btn btn-warning"
+        %>
+      <% end %>
 
-  <% if @objective.status.eql?(Status::PENDING) %>
-    <%= link_to "Delete objective",
-      objective_path(@objective),
-      method: "delete",
-      confirm: "Are you sure?",
-      class: "btn btn-danger"
-    %>
-  <% end %>
-</p>
+      <% if @objective.status.eql?(Status::PENDING) %>
+        <%= link_to "Delete objective",
+          objective_path(@objective),
+          method: "delete",
+          confirm: "Are you sure?",
+          class: "btn btn-danger"
+        %>
+      <% end %>
+    </p>
+  </article>
+
+  <aside class="span2">
+    <h3>Informations</h3>
+    <dl>
+      <dt>Started at </dt>
+      <dd><%= @objective.startdate %></dd>
+      <dt>Affected to </dt>
+      <dd><%= @objective.user.profile.pseudo %></dd>
+      <dt>Status </dt>
+      <dd>
+        <%= content_tag :span, @objective.status,
+          class: "badge badge-" + @objective.status.to_s
+        %>
+      </dd>
+    </dl>
+  </aside>
+</section>
