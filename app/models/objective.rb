@@ -8,7 +8,7 @@ class Objective < ActiveRecord::Base
 	has_and_belongs_to_many :labels
 
 	# Validations
-	validates :user, :title, presence: {message: "Field cannot be empty."}
+	validates :user, :title, :done, :startdate, :project, presence: {message: "Field cannot be empty."}
 
   # Methods
   def status
