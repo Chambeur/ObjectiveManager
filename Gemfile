@@ -7,6 +7,7 @@ gem 'rails', '3.2.1'
 
 # SGBD
 gem 'pg'
+gem 'sqlite3'
 
 # User configuration
 gem 'devise'

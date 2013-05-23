@@ -16,4 +16,11 @@ class ObjectiveTest < ActiveSupport::TestCase
     assert(!obj.done?)
     assert(obj.startdate.cweek >= Date.today.cweek && obj.startdate.cwyear >= Date.today.cwyear)
   end
+
+  test "objective missed" do
+    obj = objectives(:full_missed)
+    assert(!obj.done?)
+    assert(obj.startdate.cweek < Date.today.cweek || obj.startdate.cwyear < Date.today.cwyear)
+  end
+
 end

@@ -5,8 +5,6 @@
 # below each fixture, per the syntax in the comments below
 #
 
-<% team_full_autogenerate_id = teams(:full_autogenerate).id %>
-
 full:
  name: "Toto project"
- team_id: <%= team_full_autogenerate_id %>
+ team: full_autogenerate

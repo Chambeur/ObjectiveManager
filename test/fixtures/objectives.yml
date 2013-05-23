@@ -4,16 +4,14 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-<% user_full_id = users(:full).id %>
-<% project_full_id = projects(:full).id %>
 
 full_done:
  title: "Title of obj"
  description: "Description of obj"
  created_at: <%= Date.today %>
  updated_at: <%= Date.today %>
- user_id: <%= user_full_id %>
- project_id: <%= project_full_id %>
+ user: full
+ project: full
  done: true
  startdate: <%= Date.today %>
 
@@ -23,8 +21,8 @@ full_pending:
  description: "Description of obj"
  created_at: <%= Date.today %>
  updated_at: <%= Date.today %>
- user_id: <%= user_full_id %>
- project_id: <%= project_full_id %>
+ user: full
+ project: full
  done: false
  startdate: <%= Date.today %>
 
@@ -34,8 +32,8 @@ full_missed:
  description: "Description of obj"
  created_at: <%= Date.today.prev_week %>
  updated_at: <%= Date.today.prev_week %>
- user_id: <%= user_full_id %>
- project_id: <%= project_full_id %>
+ user: full
+ project: full
  done: false
  startdate: <%= Date.today.prev_week %>
 
