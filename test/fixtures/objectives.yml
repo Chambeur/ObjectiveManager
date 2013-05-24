@@ -40,7 +40,3 @@ full_missed:
 #
 unvalid_presence:
  title: ""
- user_id: nil
- project_id: nil
- done: nil
- startdate: nil
