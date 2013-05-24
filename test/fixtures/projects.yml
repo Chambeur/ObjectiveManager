@@ -7,4 +7,15 @@
 
 full:
  name: "Toto project"
+ description: "Proj description"
+ team: full_autogenerate
+
+3_all:
+ name: "3 all"
+ description: "Proj description"
+ team: full_autogenerate
+
+unvalid_presence:
+ name: ""
+ description: ""
  team: full_autogenerate

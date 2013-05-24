@@ -15,7 +15,6 @@ full_done:
  done: true
  startdate: <%= Date.today %>
 
-#
 full_pending:
  title: "Title of obj"
  description: "Description of obj"
@@ -26,7 +25,6 @@ full_pending:
  done: false
  startdate: <%= Date.today %>
 
-#
 full_missed:
  title: "Title of obj"
  description: "Description of obj"
@@ -37,6 +35,135 @@ full_missed:
  done: false
  startdate: <%= Date.today.prev_week %>
 
-#
 unvalid_presence:
  title: ""
+
+pending_1_1:
+ title: "Pending11"
+ description: "Description of obj"
+ created_at: <%= Date.today %>
+ updated_at: <%= Date.today %>
+ user: user_1
+ project: 3_all
+ done: false
+ startdate: <%= Date.today %>
+
+pending_1_2:
+ title: "Pending12"
+ description: "Description of obj"
+ created_at: <%= Date.today %>
+ updated_at: <%= Date.today %>
+ user: user_1
+ project: full
+ done: false
+ startdate: <%= Date.today %>
+
+pending_1_3:
+ title: "Pending13"
+ description: "Description of obj"
+ created_at: <%= Date.today %>
+ updated_at: <%= Date.today %>
+ user: user_1
+ project: full
+ done: false
+ startdate: <%= Date.today %>
+
+pending_2_1:
+ title: "Pending21"
+ description: "Description of obj"
+ created_at: <%= Date.today %>
+ updated_at: <%= Date.today %>
+ user: user_2
+ project: 3_all
+ done: false
+ startdate: <%= Date.today %>
+
+pending_3_1:
+ title: "Pending31"
+ description: "Description of obj"
+ created_at: <%= Date.today %>
+ updated_at: <%= Date.today %>
+ user: user_3
+ project: 3_all
+ done: false
+ startdate: <%= Date.today %>
+
+done_1_1:
+ title: "Done11"
+ description: "Description of obj"
+ created_at: <%= Date.today %>
+ updated_at: <%= Date.today %>
+ user: user_1
+ project: 3_all
+ done: true
+ startdate: <%= Date.today %>
+
+done_1_2:
+ title: "Done12"
+ description: "Description of obj"
+ created_at: <%= Date.today %>
+ updated_at: <%= Date.today %>
+ user: user_1
+ project: full
+ done: true
+ startdate: <%= Date.today %>
+
+done_1_3:
+ title: "Done13"
+ description: "Description of obj"
+ created_at: <%= Date.today.prev_week %>
+ updated_at: <%= Date.today.prev_week %>
+ user: user_1
+ project: full
+ done: true
+ startdate: <%= Date.today.prev_week %>
+
+done_2_1:
+ title: "Done21"
+ description: "Description of obj"
+ created_at: <%= Date.today %>
+ updated_at: <%= Date.today %>
+ user: user_2
+ project: 3_all
+ done: true
+ startdate: <%= Date.today %>
+
+done_31:
+ title: "Done31"
+ description: "Description of obj"
+ created_at: <%= Date.today %>
+ updated_at: <%= Date.today %>
+ user: user_3
+ project: 3_all
+ done: true
+ startdate: <%= Date.today %>
+
+missed_1:
+ title: "Missed1"
+ description: "Description of obj"
+ created_at: <%= Date.today.prev_week %>
+ updated_at: <%= Date.today.prev_week %>
+ user: user_1
+ project: 3_all
+ done: false
+ startdate: <%= Date.today.prev_week %>
+
+missed_2:
+ title: "Missed2"
+ description: "Description of obj"
+ created_at: <%= Date.today.prev_week %>
+ updated_at: <%= Date.today.prev_week %>
+ user: user_2
+ project: 3_all
+ done: false
+ startdate: <%= Date.today.prev_week %>
+
+missed_3:
+ title: "Missed3"
+ description: "Description of obj"
+ created_at: <%= Date.today.prev_week %>
+ updated_at: <%= Date.today.prev_week %>
+ user: user_3
+ project: 3_all
+ done: false
+ startdate: <%= Date.today.prev_week %>

@@ -18,7 +18,7 @@ class ProjectsController < ApplicationController
 			redirect_to project_path(@project)
 		else
 			flash[:error] = "Error. Your project has not been saved."
-      render "index"
+      render "new"
 		end
 	end
 

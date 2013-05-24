@@ -21,6 +21,7 @@ class Objective < ActiveRecord::Base
     end
   end
 
+  # Deprecated
   def self.pending_nb(user_id = current_user.id, period = Date.today, project_id = nil)
     if project_id.nil?
       pending_nb = Objective.where(
