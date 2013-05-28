@@ -6,6 +6,10 @@ class ObjectiveTest < ActiveSupport::TestCase
     assert(obj.valid?)
     temp = obj
 
+    obj.done = false
+    assert(obj.valid?)
+    obj = temp
+
     obj.description = ""
     assert(obj.valid?)
     obj = temp

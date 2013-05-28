@@ -19,6 +19,9 @@ class ObjectivesController < ApplicationController
 			redirect_to project_path(@objective.project)
 		else
 			flash[:error] = "Error. Your objective has not been saved."
+			@project = @objective.project
+			@labels = Label.all
+			@profiles = Profile.where(user_id: @project.team.users)
       render "new"
 		end
 	end
@@ -64,7 +67,7 @@ class ObjectivesController < ApplicationController
 
 		if @objective.update_attributes(done: true)
 			flash[:success] = "Congrats ! Objective done."
-			render "show"
+			redirect_to objective_path(@objective)
 		else
 			flash[:error] = "Objective not updated."
 			render "show"
