@@ -42,13 +42,24 @@
         <% if user_signed_in? %>
 
           <aside class="span2">
-            <h2>Profil</h2>
-            <ul class="nav nav-pills nav-stacked">
+            <h2>Profile</h2>
+              <figure> 
+                <%= image_tag("profile.jpg") %>
+              </figure>
+              <h4>
+                <%= "#{current_user.profile.firstname}" unless current_user.profile.firstname.nil? %>
+                <%= "#{current_user.profile.lastname}" unless current_user.profile.lastname.nil? %>
+              </h4>
+
+              <h5><%= "#{current_user.profile.pseudo}" %></h5>
+              <h5>Joined on <%= "#{current_user.created_at.to_formatted_s(:short)}" %></h5>
+
+            <!-- <ul class="nav nav-pills nav-stacked">
               <li> <%=link_to "All Projects", projects_path, :class => "btn-large" %> </li>
               <li> <%=link_to "Manage Labels", labels_path, :class => "btn-large" %> </li>
               <li> <%=link_to "Manage Teams", teams_path, :class => "btn-large" %> </li>
             </ul>
-
+ -->
             <h3>Quick views</h3>
             <ul class="unstyled">
               <li> Current Week : <%= Date.today.cweek %> </li>

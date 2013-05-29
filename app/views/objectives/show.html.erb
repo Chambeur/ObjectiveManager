@@ -23,7 +23,7 @@
         %>
       <% end %>
 
-      <% if @objective.status.eql?(Status::PENDING||Status::MISSED) %>
+      <% if @objective.status.eql?(Status::PENDING) || @objective.status.eql?(Status::MISSED) %>
         <%= link_to "Report objective", report_objective_path(@objective),
           method: "put",
           confirm: "Are you sure?",
