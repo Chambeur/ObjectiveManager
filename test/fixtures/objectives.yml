@@ -35,9 +35,6 @@ full_missed:
  done: false
  startdate: <%= Date.today.prev_week %>
 
-unvalid_presence:
- title: ""
-
 pending_1_1:
  title: "Pending11"
  description: "Description of obj"

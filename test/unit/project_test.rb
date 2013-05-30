@@ -1,20 +1,20 @@
 require 'test_helper'
 
 class ProjectTest < ActiveSupport::TestCase
-  test "validate presences" do
-    prj = projects(:full)
-    assert(prj.valid?)
-    temp = prj
+  test "validates presences" do
+    prj = Project.new
 
-    prj.name = ""
-    assert(!prj.valid?)
-    prj = temp
-
-    prj.description = ""
-    assert(!prj.valid?)
-    prj = temp
-
-    prj.team = nil
-    assert(!prj.valid?)
+    assert(prj.invalid?)
+    assert(prj.errors[:name].any?)
+    assert(prj.errors[:description].any?)
+    assert(prj.errors[:team].any?)
   end
+
+  test "validates uniqueness" do
+    prj = Project.new(name: projects(:full).name)
+
+    assert(!prj.save)
+    assert(prj.errors[:name].any?)
+  end
+
 end

@@ -8,7 +8,7 @@ class Objective < ActiveRecord::Base
 	has_and_belongs_to_many :labels
 
 	# Validations
-	validates :user, :title, :startdate, :project, presence: {}
+	validates :user, :title, :startdate, :project, presence: true
   validates :done, inclusion: {in: [true, false]}
 
   # Methods

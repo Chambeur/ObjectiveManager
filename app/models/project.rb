@@ -7,5 +7,6 @@ class Project < ActiveRecord::Base
 	belongs_to :team
 
 	# Validations
-	validates :name, :description, presence: {message: "Field cannot be empty."}
+	validates :name, :description, :team, presence: true
+  validates :name, uniqueness: true
 end

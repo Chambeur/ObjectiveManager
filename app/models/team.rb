@@ -8,7 +8,8 @@ class Team < ActiveRecord::Base
 	has_many :users, through: :teammembers
 
 	# Validations
-	validates :name, presence: {message: "Field cannot be empty."}
+	validates :name, presence: true
+	validates :autogenerate, inclusion: {in: [true, false]}
 
 	# Methods
 	def self.autogenerate (project_name, user_id)
@@ -20,6 +21,7 @@ class Team < ActiveRecord::Base
 		end
 	end
 
+	# TODO: deplacer cette methode dans un controller
 	def add_teammember(user_id, manager)
 		teammember = Teammember.new
 		teammember.team_id = self.id

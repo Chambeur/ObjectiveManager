@@ -2,53 +2,16 @@ require 'test_helper'
 
 class ObjectiveTest < ActiveSupport::TestCase
   test "validate presences" do
-    obj = objectives(:full_done)
-    assert(obj.valid?)
-    temp = obj
+    obj = Objective.new
 
-    obj.done = false
-    assert(obj.valid?)
-    obj = temp
+    assert(obj.invalid?)
+    assert(obj.errors[:user].any?)
+    assert(obj.errors[:title].any?)
+    assert(obj.errors[:startdate].any?)
+    assert(obj.errors[:project].any?)
+    assert(obj.errors[:done].any?)
 
-    obj.description = ""
-    assert(obj.valid?)
-    obj = temp
-
-    obj.user = nil
-    assert(!obj.valid?)
-    obj = temp
-
-    obj.title = ""
-    assert(!obj.valid?)
-    obj = temp
-
-    obj.done = nil
-    assert(!obj.valid?)
-    obj = temp
-
-    obj.startdate = nil
-    assert(!obj.valid?)
-    obj = temp
-
-    obj.project = nil
-    assert(!obj.valid?)
-  end
-
-  test "objective done" do
-    obj = objectives(:full_done)
-    assert(obj.done?)
-  end
-
-  test "objective pending" do
-    obj = objectives(:full_pending)
-    assert(!obj.done?)
-    assert(obj.startdate.cweek >= Date.today.cweek && obj.startdate.cwyear >= Date.today.cwyear)
-  end
-
-  test "objective missed" do
-    obj = objectives(:full_missed)
-    assert(!obj.done?)
-    assert(obj.startdate.cweek < Date.today.cweek || obj.startdate.cwyear < Date.today.cwyear)
+    assert(!obj.errors[:description].any?)
   end
 
   test "objective status" do

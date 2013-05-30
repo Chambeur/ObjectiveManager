@@ -6,7 +6,8 @@ class Profile < ActiveRecord::Base
   belongs_to :user
 
 	# Validations
-	validates :pseudo, presence: {message: "Field cannot be empty."}
+	validates :pseudo, :user, presence: true
+  validates :pseudo, uniqueness: true
 
   # Methods
   def percent(opts = {})

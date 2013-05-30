@@ -5,4 +5,9 @@ class Teammember < ActiveRecord::Base
 	# Associations
 	belongs_to :user
 	belongs_to :team
+
+  # Validations
+  validates :user, :team, presence: true
+  validates :manager, inclusion: {in: [true, false]}
+
 end

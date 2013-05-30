@@ -14,8 +14,3 @@ full:
  name: "3 all"
  description: "Proj description"
  team: full_autogenerate
-
-unvalid_presence:
- name: ""
- description: ""
- team: full_autogenerate
