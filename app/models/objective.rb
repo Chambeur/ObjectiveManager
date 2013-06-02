@@ -15,8 +15,10 @@ class Objective < ActiveRecord::Base
   def status
     if self.done?
       Status::DONE
-    elsif self.startdate.cweek >= Date.today.cweek && self.startdate.cwyear >= Date.today.cwyear
+    elsif self.startdate.cweek == Date.today.cweek && self.startdate.cwyear == Date.today.cwyear
       Status::PENDING
+    elsif (self.startdate.cwyear > Date.today.cwyear) || (self.startdate.cweek > Date.today.cweek && self.startdate.cwyear == Date.today.cwyear)
+      Status::REPORTED
     else
       Status::MISSED
     end

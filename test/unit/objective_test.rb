@@ -19,6 +19,10 @@ class ObjectiveTest < ActiveSupport::TestCase
     assert_equal(obj.status, Status::DONE)
     obj = objectives(:full_pending)
     assert_equal(obj.status, Status::PENDING)
+    obj = objectives(:full_reported_week)
+    assert_equal(obj.status, Status::REPORTED)
+    obj = objectives(:full_reported_year)
+    assert_equal(obj.status, Status::REPORTED)
     obj = objectives(:full_missed)
     assert_equal(obj.status, Status::MISSED)
   end

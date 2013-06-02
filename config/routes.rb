@@ -3,7 +3,11 @@ ObjManager::Application.routes.draw do
 
   root :to => 'home#index'
 
-  resources :profiles
+  resources :profiles do
+    member do
+      put 'nowadmin'
+    end
+  end
 
   resources :objectives do
     member do

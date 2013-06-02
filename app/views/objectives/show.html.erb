@@ -15,7 +15,7 @@
     </p>
 
     <p>
-      <% if @objective.status.eql?(Status::PENDING) %>
+      <% if @objective.status.eql?(Status::PENDING) || @objective.status.eql?(Status::REPORTED) %>
         <%= link_to "Finish objective", done_objective_path(@objective),
           method: 'put',
           confirm: "Are you sure?",
@@ -31,7 +31,7 @@
         %>
       <% end %>
 
-      <% if @objective.status.eql?(Status::PENDING) %>
+      <% if @objective.status.eql?(Status::PENDING) || @objective.status.eql?(Status::REPORTED) %>
         <%= link_to "Delete objective",
           objective_path(@objective),
           method: "delete",

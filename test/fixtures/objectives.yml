@@ -25,6 +25,26 @@ full_pending:
  done: false
  startdate: <%= Date.today %>
 
+full_reported_week:
+ title: "Title of obj"
+ description: "Description of obj"
+ created_at: <%= Date.today %>
+ updated_at: <%= Date.today %>
+ user: full
+ project: full
+ done: false
+ startdate: <%= Date.today.next_week %>
+
+full_reported_year:
+ title: "Title of obj"
+ description: "Description of obj"
+ created_at: <%= Date.today %>
+ updated_at: <%= Date.today %>
+ user: full
+ project: full
+ done: false
+ startdate: <%= Date.today.next_year %>
+
 full_missed:
  title: "Title of obj"
  description: "Description of obj"

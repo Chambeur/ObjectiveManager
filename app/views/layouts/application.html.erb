@@ -51,7 +51,7 @@
                 <%= "#{current_user.profile.lastname}" unless current_user.profile.lastname.nil? %>
               </h4>
 
-              <h5><%= "#{current_user.profile.pseudo}" %></h5>
+              <h5><%= link_to "#{current_user.profile.pseudo}", profile_path(current_user.profile) %></h5>
               <h5>Joined on <%= "#{current_user.created_at.to_formatted_s(:short)}" %></h5>
 
             <!-- <ul class="nav nav-pills nav-stacked">

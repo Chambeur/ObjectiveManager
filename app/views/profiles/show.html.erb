@@ -1,0 +1,11 @@
+<div class="page-header">
+  <h1> <%= @user.profile.pseudo %> </h1>
+</div>
+
+<p>
+  Is Admin : <%= @user.admin? %>
+</p>
+
+<p>
+  <%= link_to "Now Admin", nowadmin_profile_path(@user.id), method: 'put' %> 
+</p>

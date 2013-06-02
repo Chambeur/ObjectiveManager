@@ -4,8 +4,8 @@ body { padding-top: 60px; }
 
 $done-color: green;
 $pending-color: orange;
+$reported-color: blue;
 $missed-color: red;
-
 
 .label-red {
   background: red;
@@ -29,6 +29,10 @@ $missed-color: red;
 
 .badge-pending {
 	background: $pending-color;
+}
+
+.badge-reported {
+  background: $reported-color;
 }
 
 .badge-missed {
