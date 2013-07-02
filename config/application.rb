@@ -60,5 +60,19 @@ module ObjManager
     # Troubleshooting when not set to false.
     # See https://devcenter.heroku.com/articles/rails-asset-pipeline#troubleshooting
     config.assets.initialize_on_precompile = false
+
+    # Config for tests
+    # http://everydayrails.com/2012/03/12/testing-series-rspec-setup.html
+    config.generators do |g|
+      g.test_framework :rspec,
+        :fixtures => true,        # generate fixture for each model
+        :view_specs => false,
+        :helper_specs => false,
+        :routing_specs => false,
+        :controller_specs => true,
+        :request_specs => true
+
+      g.fixture_replacement :factory_girl, :dir => "spec/factories"
+    end
   end
 end

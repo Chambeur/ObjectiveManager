@@ -86,11 +86,13 @@ class ObjectivesController < ApplicationController
 				return
 			end
 		elsif @objective.status.eql?(Status::MISSED)
-			old_objective = @objective
-			@objective = Objective.new(old_objective)
+			#deprecated part begin
+			#old_objective = @objective
+			#@objective = Objective.new(old_objective)
+			#end
 			@objective.startdate = Date.today
 			if @objective.save
-				flash[:info] = "Objective duplicated to this week."
+				flash[:info] = "Objective reported this week."
 				redirect_to objective_path(@objective)
 				return
 			end
