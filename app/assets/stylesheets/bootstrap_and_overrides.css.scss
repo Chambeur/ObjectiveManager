@@ -39,6 +39,28 @@ $missed-color: red;
 	background: $missed-color;
 }
 
+.icon {
+  height: 32px;
+  width: 32px;
+}
+
+.icon-done {
+  background: url(ico-done.png);
+}
+
+.icon-pending {
+  background: url(ico-pending.png);
+}
+
+.icon-reported {
+  background: url(ico-reported.png);
+}
+
+.icon-missed {
+  background: url(ico-missed.png);
+}
+
+
 .progress {
   .bar-done {
     background: $done-color;
@@ -50,5 +72,11 @@ $missed-color: red;
 
   .bar-missed {
     background: $missed-color;
+  }
+}
+
+.main-report {
+  tr td:first-of-type {
+
   }
 }

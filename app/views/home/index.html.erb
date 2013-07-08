@@ -25,7 +25,7 @@
 
       <!-- Objectives -->
       <!-- TODO: Add js to sort the table -->
-      <table class="table table-condensed">
+      <table class="table table-condensed main-report">
         <thead>
           <tr>
             <th>Status</th>
@@ -35,11 +35,24 @@
           </tr>
         </thead>
         <tbody>
-          <% current_user.objectives.each do |obj| %>
+          <% @objectives.each do |obj| %>
             <tr>
-              <td><%= content_tag :span, obj.status, class: "badge badge-" + obj.status.to_s %></td>
-              <td><%= link_to "#{obj.title}", objective_path(obj) %></td>
-              <td><%= link_to "#{obj.description}"%></td>
+              <td>
+                <%= content_tag :span, obj.status, class: "badge badge-" + obj.status.to_s %>
+                <!-- Examples for icons
+                <span class="<%= "icon icon-" + obj.status.to_s %>" ></span>
+                -->
+              </td>
+              <td>
+                <%= link_to "#{obj.title}", objective_path(obj) %>
+
+              </td>
+              <td>
+                <% obj.labels.each do |l| %>
+                  <%= label_tag :label, l.name, class: l.colour %>
+                <% end %>
+                <%= link_to "#{obj.description}"%>
+              </td>
               <td><%= link_to "#{obj.project.name}", project_path(obj.project) %></td>
             </tr>
           <% end %>

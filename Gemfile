@@ -22,7 +22,7 @@ group :test do
   gem 'faker'       # generate fake names
   gem 'capybara'    # simulate user's interactions
   gem 'guard-rspec' # run tests automatically afer changes
-  # gem 'launchy'     # show in browser the failed rendering
+  gem 'launchy'     # show in browser the failed rendering
 end
 
 # Gems used only for assets and not required
