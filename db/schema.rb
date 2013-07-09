@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130531120409) do
+ActiveRecord::Schema.define(:version => 20130709161802) do
 
   create_table "labels", :force => true do |t|
     t.string   "name"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20130531120409) do
     t.integer  "project_id"
     t.boolean  "done"
     t.date     "startdate"
+    t.boolean  "duplicate"
   end
 
   create_table "profiles", :force => true do |t|

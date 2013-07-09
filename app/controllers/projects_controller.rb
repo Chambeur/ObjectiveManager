@@ -28,7 +28,7 @@ class ProjectsController < ApplicationController
 
 	def show
 		@project = Project.find(params[:id])
-		@objectives = Objective.where(:project_id => params[:id])
+		@objectives = Objective.sort_by_status(Objective.where(project_id: params[:id]))
 	end
 
 	def edit

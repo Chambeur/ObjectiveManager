@@ -12,7 +12,8 @@ ObjManager::Application.routes.draw do
   resources :objectives do
     member do
       put 'done'
-      put 'report'
+      put 'delay'
+      put 'duplicate'
     end
   end
 

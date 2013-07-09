@@ -14,6 +14,42 @@
     <%= link_to "+", new_project_objective_path(@project), class: "btn" %>
   </h3>
 
+  <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th>Status</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Project</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @objectives.each do |obj| %>
+            <tr>
+              <td>
+                <%= content_tag :span, obj.status, class: "badge badge-" + obj.status.to_s %>
+                <!-- Examples for icons
+                <span class="<%= "icon icon-" + obj.status.to_s %>" ></span>
+                -->
+              </td>
+              <td>
+                <%= link_to "#{obj.title}", objective_path(obj) %>
+
+              </td>
+              <td>
+                <% obj.labels.each do |l| %>
+                  <%= label_tag :label, l.name, class: l.colour %>
+                <% end %>
+                <%= link_to "#{obj.description}"%>
+              </td>
+              <td><%= link_to "#{obj.project.name}", project_path(obj.project) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+<!--
+
   <table class="table table-striped table-bordered table-condensed">
   	<thead>
   		<tr>
@@ -49,7 +85,7 @@
   		<% end %>
   	</tbody>
 
-  </table>
+  </table> -->
 </p>
 
 <p>

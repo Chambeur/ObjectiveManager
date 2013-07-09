@@ -15,7 +15,7 @@
     </p>
 
     <p>
-      <% if @objective.status.eql?(Status::PENDING) || @objective.status.eql?(Status::REPORTED) %>
+      <% if @objective.status.eql?(Status::PENDING) || @objective.status.eql?(Status::DELAYED) %>
         <%= link_to "Finish objective", done_objective_path(@objective),
           method: 'put',
           confirm: "Are you sure?",
@@ -23,15 +23,23 @@
         %>
       <% end %>
 
-      <% if @objective.status.eql?(Status::PENDING) || @objective.status.eql?(Status::MISSED) %>
-        <%= link_to "Report objective", report_objective_path(@objective),
+      <% if @objective.status.eql?(Status::PENDING) %>
+        <%= link_to "Delay objective", delay_objective_path(@objective),
+          method: "put",
+          confirm: "Are you sure?",
+          class: "btn btn-info"
+        %>
+      <% end %>
+
+      <% if @objective.status.eql?(Status::MISSED) %>
+        <%= link_to "Duplicate objective", duplicate_objective_path(@objective),
           method: "put",
           confirm: "Are you sure?",
           class: "btn btn-warning"
         %>
       <% end %>
 
-      <% if @objective.status.eql?(Status::PENDING) || @objective.status.eql?(Status::REPORTED) %>
+      <% if @objective.status.eql?(Status::PENDING) || @objective.status.eql?(Status::DELAYED) %>
         <%= link_to "Delete objective",
           objective_path(@objective),
           method: "delete",

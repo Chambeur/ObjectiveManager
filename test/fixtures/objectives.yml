@@ -25,7 +25,7 @@ full_pending:
  done: false
  startdate: <%= Date.today %>
 
-full_reported_week:
+full_delayed_week:
  title: "Title of obj"
  description: "Description of obj"
  created_at: <%= Date.today %>
@@ -35,7 +35,7 @@ full_reported_week:
  done: false
  startdate: <%= Date.today.next_week %>
 
-full_reported_year:
+full_delayed_year:
  title: "Title of obj"
  description: "Description of obj"
  created_at: <%= Date.today %>

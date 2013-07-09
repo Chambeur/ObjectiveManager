@@ -1,6 +1,6 @@
 class Objective < ActiveRecord::Base
 	# Attributes
-	attr_accessible :title, :description, :done, :startdate
+	attr_accessible :title, :description, :done, :duplicate, :startdate
 
 	# Associations
 	belongs_to :user
@@ -9,16 +9,18 @@ class Objective < ActiveRecord::Base
 
 	# Validations
 	validates :user, :title, :startdate, :project, presence: true
-  validates :done, inclusion: {in: [true, false]}
+  validates :done, :duplicate, inclusion: {in: [true, false]}
 
   # Methods
   def status
     if self.done?
       Status::DONE
+    elsif self.duplicate
+      Status::DUPLICATED
     elsif self.startdate.cweek == Date.today.cweek && self.startdate.cwyear == Date.today.cwyear
       Status::PENDING
     elsif (self.startdate.cwyear > Date.today.cwyear) || (self.startdate.cweek > Date.today.cweek && self.startdate.cwyear == Date.today.cwyear)
-      Status::REPORTED
+      Status::DELAYED
     else
       Status::MISSED
     end
@@ -62,5 +64,26 @@ class Objective < ActiveRecord::Base
     obj_params[:user_id] = options[:user_id] unless options[:user_id].nil?
 
     Objective.where(obj_params).count
+  end
+
+  def self.sort_by_status(objectives)
+    sort_objectives = objectives.sort_by do |obj|
+      case obj.status
+      when Status::MISSED
+        [1, obj]
+      when Status::PENDING
+        [2, obj]
+      when Status::DELAYED
+        [3, obj]
+      when Status::DONE
+        [4, obj]
+      when Status::DUPLICATED
+        [5, obj]
+      else
+        [6, obj]
+      end
+    end
+
+    return sort_objectives
   end
 end

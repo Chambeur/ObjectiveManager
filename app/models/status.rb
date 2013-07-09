@@ -2,5 +2,6 @@ class Status
   PENDING = :pending
   DONE = :done
   MISSED = :missed
-  REPORTED = :reported
+  DELAYED = :delayed
+  DUPLICATED = :duplicated
 end
