@@ -12,6 +12,7 @@ class ObjectivesController < ApplicationController
     @objective.project = Project.find(params[:project_id])
     @objective.labels = Label.find(params[:label_ids]) unless params[:label_ids] == nil
     @objective.done = false
+    @objective.duplicate = false
     @objective.startdate = Date.today
 
     if @objective.save
