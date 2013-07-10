@@ -13,8 +13,8 @@
 
   <p>
     <%= label_tag :user_id, "Teammate selection" %>
-    <%= select_tag :user_id, options_from_collection_for_select(@users, 'id', 'email'),
-      prompt: "Select an user"
+    <%= select_tag :user_id, options_from_collection_for_select(@profiles, 'user_id', 'pseudo'),
+      selected: @objective.user.profile
     %>
   </p>
 
@@ -23,7 +23,7 @@
     <ul class="inline">
       <% @labels.each do |label| %>
         <li>
-          <%= check_box_tag 'label_ids[#{label.id}]', label.id, @objective.labels.include?(label) %>
+          <%= check_box_tag 'label_ids[]', label.id %>
           <%= label_tag label.id, label.name, class: label.colour %>
         </li>
       <% end %>

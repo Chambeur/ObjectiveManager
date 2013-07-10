@@ -38,14 +38,15 @@ class ObjectivesController < ApplicationController
   def edit
     @objective = Objective.find(params[:id])
     @labels = Label.all
-    @users = User.find(@objective.project.team.users)
+    @profiles = Profile.where(user_id: @objective.project.team.users)
   end
 
   def update
     @objective = Objective.find(params[:id])
-    user = User.find(params[:user_id])
-    labels = Label.find(params[:label_ids]) unless params[:label_ids] == nil
-    if @objective.update_attributes(params[:objective], user: user, labels: labels)
+    @objective.user = User.find(params[:user_id])
+    @objective.labels = params[:label_ids] == nil ? [] : Label.find(params[:label_ids])
+
+    if @objective.update_attributes(params[:objective])
       flash[:success] = "All the modifications have been saved."
       redirect_to project_path(@objective.project)
     else

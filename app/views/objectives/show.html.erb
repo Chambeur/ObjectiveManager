@@ -10,7 +10,9 @@
 <section class="row">
   <article class="span8">
     <p>
-      <h3>Description</h3>
+      <h3>Description
+        <%= link_to "...", edit_objective_path(@objective), class: "btn" %>
+      </h3>
       <%= content_tag :div, @objective.description, class: "well" %>
     </p>
 
