@@ -6,7 +6,7 @@ class Profile < ActiveRecord::Base
   belongs_to :user
 
 	# Validations
-	validates :pseudo, :user, presence: true
+	validates :pseudo, presence: true
   validates :pseudo, uniqueness: true
 
   # Methods
