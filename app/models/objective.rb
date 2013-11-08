@@ -26,24 +26,6 @@ class Objective < ActiveRecord::Base
     end
   end
 
-  # Deprecated
-  def self.pending_nb(user_id = current_user.id, period = Date.today, project_id = nil)
-    if project_id.nil?
-      pending_nb = Objective.where(
-        done: false,
-        user_id: user_id,
-        startdate: (period.beginning_of_week..period.end_of_week)
-      ).count
-    else
-      pending_nb = Objective.where(
-        done: false,
-        project_id: project_id,
-        user_id: user_id,
-        startdate: (period.beginning_of_week..period.end_of_week)
-      ).count
-    end
-  end
-
   def self.undone_nb(period, options = {})
     obj_params = {
       done: false,
